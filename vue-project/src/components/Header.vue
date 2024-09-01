@@ -1,9 +1,9 @@
 <template>
      <header >
     <h1>Полезные свойства капусты</h1>
-    <nav>
+    <nav ref="menu" class="menu">
       <ul>
-        <li @click="activeMenu"><img src="../assets/img/apps 1.png" ></li>
+        <li  @click="toggleMenu"><img src="../assets/img/apps 1.png" ></li>
         <li><a href="#">Главная</a></li>
         <li><a href="#">Блог</a></li>
         <li><a href="#">О нас</a></li>
@@ -62,9 +62,33 @@ nav a:hover{
         color: #FECFB0;
       } 
 </style>
-<script setup>
-import {reactive} from 'vue'
-const activeMenu = function(){
-  
-}
+<script>
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const isMenuVisible = ref(false); // Состояние видимости меню
+    const menu = ref(null); // Ссылка на элемент DOM
+
+    const toggleMenu = () => {
+      if (isMenuVisible.value) {
+        // Если меню видно, скрываем его
+        menu.value.style.transition = 'right 0.5s ease, transform 0.5s ease'; // Плавный переход
+        menu.value.style.right = '-300px'; // Скрываем меню
+        menu.value.style.transform = 'translateX(0)'; // Возвращаем исходное положение
+      } else {
+        // Если меню скрыто, показываем его
+        menu.value.style.transition = 'right 0.5s ease, transform 0.5s ease'; // Плавный переход
+        menu.value.style.right = '50%'; // Перемещаем меню в центр
+        menu.value.style.transform = 'translateX(50%)'; // Центрируем по оси X
+      }
+      isMenuVisible.value = !isMenuVisible.value; // Переключаем состояние меню
+    };
+
+    return {
+      menu,
+      toggleMenu
+    };
+  }
+};
 </script>
