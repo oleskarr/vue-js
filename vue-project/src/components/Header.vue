@@ -1,6 +1,6 @@
 <template>
      <header >
-    <h1>Полезные свойства капусты</h1>
+    <h1 ref="text" class="text">Полезные свойства капусты</h1>
     <nav ref="menu" class="menu">
       <ul>
         <li  @click="toggleMenu"><img src="../assets/img/apps 1.png" ></li>
@@ -28,6 +28,7 @@ header{
 }
 header h1{
   color: #B54B62;
+  transition: opacity 0.5s ease;
 }
 nav{
   position: absolute;
@@ -40,6 +41,7 @@ nav{
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 40px;
+  transition: right 0.5s ease, transform 0.5s ease; 
   
   ul{
     display: flex;
@@ -68,25 +70,27 @@ import { ref } from 'vue';
 export default {
   setup() {
     const isMenuVisible = ref(false); // Состояние видимости меню
-    const menu = ref(null); // Ссылка на элемент DOM
+    const menu = ref(null); // Ссылка на элемент DOM меню
+    const text = ref(null); // Ссылка на элемент DOM текста
 
     const toggleMenu = () => {
       if (isMenuVisible.value) {
         // Если меню видно, скрываем его
-        menu.value.style.transition = 'right 0.5s ease, transform 0.5s ease'; // Плавный переход
         menu.value.style.right = '-300px'; // Скрываем меню
         menu.value.style.transform = 'translateX(0)'; // Возвращаем исходное положение
+        text.value.style.opacity = '1'; // Показываем текст
       } else {
         // Если меню скрыто, показываем его
-        menu.value.style.transition = 'right 0.5s ease, transform 0.5s ease'; // Плавный переход
         menu.value.style.right = '50%'; // Перемещаем меню в центр
         menu.value.style.transform = 'translateX(50%)'; // Центрируем по оси X
+        text.value.style.opacity = '0'; // Скрываем текст
       }
       isMenuVisible.value = !isMenuVisible.value; // Переключаем состояние меню
     };
 
     return {
       menu,
+      text,
       toggleMenu
     };
   }
