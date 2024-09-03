@@ -1,7 +1,7 @@
 <template>
-  <footer :style="{ height: footerHeight }" @click="toggleHeight">
+  <footer  @click="toggleHeight">
    
-    <div class="share">
+    <div class="share" :style="{ display: isitBlock }" >
       <img src="../assets/img/vkontacte.png" />
       <img src="../assets/img/odnoklassniki 1.png" />
       <img src="../assets/img/telegram.png" />
@@ -15,6 +15,7 @@ footer p {
   font-size: 24px;
   color: #fecfb0;
   margin-top: 5px;
+  margin-bottom: 5px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 
@@ -26,23 +27,27 @@ footer img {
 }
 
 footer {
-  position: absolute;
+  position: relative;
   margin-top: -40px;
   background-color: #b54b62;
-  width: max-content;
+  width: 174px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: hidden;
+  
   margin-left: 50px;
-  height: 40px;
-  transition: height 0.3s ease; 
- 
+  
+  
 }
 .share {
-  display: flex;
+  background-color: #b54b62;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  bottom: 30px;
+  position: absolute;
+  display: none;
   gap: 25px;
   padding: 14px;
 }
@@ -51,9 +56,9 @@ footer {
 <script setup>
 import { ref } from 'vue';
 
-const footerHeight = ref('40px'); // Начальная высота
+const isitBlock = ref('none'); // Начальная высота
 
 const toggleHeight = () => {
-  footerHeight.value = footerHeight.value === '40px' ? 'max-content' : '40px';
+  isitBlock.value = isitBlock.value === 'none' ? 'flex' : 'none';
 };
 </script>

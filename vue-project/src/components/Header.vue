@@ -69,23 +69,23 @@ import { ref } from 'vue';
 
 export default {
   setup() {
-    const isMenuVisible = ref(false); // Состояние видимости меню
-    const menu = ref(null); // Ссылка на элемент DOM меню
-    const text = ref(null); // Ссылка на элемент DOM текста
+    const isMenuVisible = ref(false)
+    const menu = ref(null) 
+    const text = ref(null)
 
     const toggleMenu = () => {
       if (isMenuVisible.value) {
-        // Если меню видно, скрываем его
-        menu.value.style.right = '-300px'; // Скрываем меню
-        menu.value.style.transform = 'translateX(0)'; // Возвращаем исходное положение
-        text.value.style.opacity = '1'; // Показываем текст
+       
+        menu.value.style.right = '-300px'
+        menu.value.style.transform = 'translateX(0)'
+        text.value.style.opacity = '1'
       } else {
-        // Если меню скрыто, показываем его
-        menu.value.style.right = '50%'; // Перемещаем меню в центр
-        menu.value.style.transform = 'translateX(50%)'; // Центрируем по оси X
-        text.value.style.opacity = '0'; // Скрываем текст
+        
+        menu.value.style.right = '50%'
+        menu.value.style.transform = 'translateX(50%)'
+        text.value.style.opacity = '0'
       }
-      isMenuVisible.value = !isMenuVisible.value; // Переключаем состояние меню
+      isMenuVisible.value = !isMenuVisible.value
     };
 
     return {

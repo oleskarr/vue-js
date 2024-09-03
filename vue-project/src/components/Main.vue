@@ -28,7 +28,7 @@
         src="../assets/img/liked.png"
         class="th"
         @click="toBlock"
-        :class="{ show: isClicked }"
+        :class="{ display:isClicked }"
       />
     </div>
   </main>
@@ -64,13 +64,8 @@ main{
 }
 
 .likes .th {
-  display: none; /* Изначально скрываем третий элемент */
+  display: none; 
 }
-
-.likes .th.show {
-  display: block; /* Показать элемент, когда класс "show" добавлен */
-}
-
 .likes:hover .f {
   display: none;
 }
@@ -82,12 +77,12 @@ main{
 
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const isClicked = ref(false);
+const isClicked = ref('none');
 
-// Функция для переключения стиля
+
 const toBlock = () => {
-  isClicked.value = !isClicked.value; // Переключаем состояние
+  isClicked.value = isClicked.value === 'none' ? 'block' : 'none';
 };
 </script>
